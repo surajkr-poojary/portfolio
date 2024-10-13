@@ -1,8 +1,8 @@
 "use client";
 // components/Header.tsx
 
-import { DocumentTextIcon, MoonIcon, SunIcon } from "@heroicons/react/16/solid";
-import { useState } from "react";
+import { MoonIcon, SunIcon } from "@heroicons/react/16/solid";
+// import { useState } from "react";
 import { HomeContextProvider, useHomeContext } from "./home_context";
 
 const Header = () => {

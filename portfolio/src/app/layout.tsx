@@ -1,5 +1,5 @@
 "use client"
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { useState } from "react";
 import "./globals.css";
@@ -27,7 +27,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const [isDarkTheme] = useState(true);
 
 
   return (

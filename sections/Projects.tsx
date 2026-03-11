@@ -39,6 +39,12 @@ const projects = [
 
 const Projects = () => {
   const [filter, setFilter] = useState("All");
+  const [isTouch, setIsTouch] = useState(false);
+
+  React.useEffect(() => {
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
+
   const categories = ["All", "Web", "Mobile", "Desktop"];
 
   const filteredProjects = filter === "All" 
@@ -82,7 +88,7 @@ const Projects = () => {
           className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10"
         >
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 layout
@@ -92,8 +98,8 @@ const Projects = () => {
                 transition={{ duration: 0.4 }}
               >
                  <motion.div
-                  whileHover={{ y: -10, scale: 1.01 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                  whileHover={!isTouch ? { y: -10, scale: 1.01 } : {}}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="bg-white dark:bg-gray-900 rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 dark:border-gray-800 h-full group flex flex-col"
                 >
                 <div className="relative h-56 sm:h-72 overflow-hidden">
@@ -102,7 +108,8 @@ const Projects = () => {
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    unoptimized
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={index < 2}
                   />
                   <div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>

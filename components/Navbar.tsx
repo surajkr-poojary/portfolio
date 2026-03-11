@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
@@ -41,7 +41,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-lg py-3"
+          ? "bg-white/95 dark:bg-black/95 md:backdrop-blur-md shadow-lg py-3"
           : "bg-transparent py-5"
       }`}
     >
@@ -53,7 +53,7 @@ const Navbar = () => {
               animate={{ opacity: 1, x: 0 }}
               className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent cursor-pointer"
             >
-              Suraj K. R
+              Suraj K R
             </motion.div>
           </a>
 
@@ -127,9 +127,7 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="flex space-x-4 pt-4 border-t border-gray-100 dark:border-gray-900">
-                <a href="https://github.com/surajkr-poojary" target="_blank" rel="noreferrer">
-                  <FaGithub size={24} className="text-gray-600 dark:text-gray-400" />
-                </a>
+
                 <a href="https://www.linkedin.com/in/suraj-poojary-567426190/" target="_blank" rel="noreferrer">
                   <FaLinkedin size={24} className="text-gray-600 dark:text-gray-400" />
                 </a>

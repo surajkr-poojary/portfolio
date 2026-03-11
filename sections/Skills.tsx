@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { 
-  FaReact, FaJs, FaHtml5, FaCss3Alt, FaGithub, FaFigma, FaNodeJs 
+  FaReact, FaJs, FaHtml5, FaCss3Alt, FaFigma, FaNodeJs 
 } from "react-icons/fa";
 import { 
   SiNextdotjs, SiTypescript, SiTailwindcss, SiFlutter, SiDart, SiApple, SiPostman, SiVercel, SiSwift

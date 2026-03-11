@@ -6,7 +6,12 @@ export function useActiveSection() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
+    let lastScrollTime = 0;
     const handleScroll = () => {
+      const now = Date.now();
+      if (now - lastScrollTime < 100) return; // Throttle to 100ms
+      lastScrollTime = now;
+
       const sections = ["home", "about", "skills", "experience", "projects", "contact"];
       const scrollPosition = window.scrollY + 100;
 

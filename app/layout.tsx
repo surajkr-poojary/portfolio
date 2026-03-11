@@ -17,9 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Suraj K. R | Software Developer Portfolio",
-  description: "Modern portfolio of Suraj K. R, a Software Developer specializing in React, Next.js, Flutter, and iOS development.",
-  keywords: ["Software Developer", "React", "Next.js", "Flutter", "iOS Development", "Portfolio", "Suraj K. R"],
+  title: "Suraj K R | Software Developer Portfolio",
+  description: "Modern portfolio of Suraj K R, a Software Developer specializing in React, Next.js, Flutter, and iOS development.",
+  keywords: ["Software Developer", "React", "Next.js", "Flutter", "iOS Development", "Portfolio", "Suraj K R"],
 };
 
 import { SpotlightBackground } from "@/components/Backgrounds";

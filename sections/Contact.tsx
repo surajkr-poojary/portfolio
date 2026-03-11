@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaPhoneAlt, FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { FaPhoneAlt, FaLinkedin, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { TextReveal } from "@/components/TextAnimations";
 
 const Contact = () => {
@@ -38,14 +38,7 @@ const Contact = () => {
               </p>
 
               <div className="mt-8 pt-8 border-t border-white/10 flex gap-4 sm:gap-6">
-                <a
-                  href="https://github.com/surajkr-poojary"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white text-blue-600 flex items-center justify-center hover:scale-110 active:scale-90 transition-all shadow-xl"
-                >
-                  <FaGithub size={24} />
-                </a>
+
                 <a
                   href="https://www.linkedin.com/in/suraj-poojary-567426190/"
                   target="_blank"
@@ -57,7 +50,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="p-8 sm:p-12 lg:p-20 flex flex-col justify-center bg-gray-50/50 dark:bg-black/50 backdrop-blur-sm">
+            <div className="p-8 sm:p-12 lg:p-20 flex flex-col justify-center bg-gray-50/95 dark:bg-gray-900/95 md:backdrop-blur-sm">
               <div className="space-y-10 sm:space-y-12">
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}

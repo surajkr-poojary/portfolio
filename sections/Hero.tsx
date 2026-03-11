@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaFileDownload } from "react-icons/fa";
+import { FaLinkedin, FaFileDownload } from "react-icons/fa";
 import Link from "next/link";
 import { TextReveal, Typewriter } from "@/components/TextAnimations";
 
@@ -20,7 +20,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-1.5 mb-6 rounded-full border border-blue-200 dark:border-blue-900/50 bg-blue-50/50 dark:bg-blue-900/20 backdrop-blur-sm"
+            className="inline-block px-4 py-1.5 mb-6 rounded-full border border-blue-200 dark:border-blue-900/50 bg-blue-50/50 dark:bg-blue-900/20 md:backdrop-blur-sm"
           >
             <span className="text-blue-600 dark:text-blue-400 text-xs sm:text-sm font-bold tracking-wider uppercase">
               Building the future, one pixel at a time
@@ -29,7 +29,7 @@ const Hero = () => {
 
           <div className="flex justify-center mb-6">
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-black leading-[1.1] tracking-tight bg-gradient-to-r from-gray-900 via-blue-600 to-gray-900 dark:from-white dark:via-blue-400 dark:to-white bg-clip-text text-transparent">
-              Hi, I&apos;m Suraj K. R
+              Hi, I&apos;m Suraj K R
             </h1>
           </div>
 
@@ -78,9 +78,7 @@ const Hero = () => {
             transition={{ duration: 1, delay: 1.5 }}
             className="mt-12 sm:mt-16 flex items-center justify-center gap-6 sm:gap-8"
           >
-            <a href="https://github.com/surajkr-poojary" target="_blank" rel="noreferrer" className="p-3 sm:p-4 rounded-2xl bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-all hover:-translate-y-2">
-              <FaGithub size={24} />
-            </a>
+
             <a href="https://www.linkedin.com/in/suraj-poojary-567426190/" target="_blank" rel="noreferrer" className="p-3 sm:p-4 rounded-2xl bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-all hover:-translate-y-2">
               <FaLinkedin size={24} />
             </a>

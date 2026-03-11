@@ -33,14 +33,14 @@ export const Typewriter = () => {
   );
 };
 
-export const TextReveal = ({ text, className = "" }: { text: string; className?: string }) => {
+export const TextReveal = React.memo(({ text, className = "" }: { text: string; className?: string }) => {
   const words = text.split(" ");
 
   const container = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: { staggerChildren: 0.03, delayChildren: 0.04 * i },
+      transition: { staggerChildren: 0.02, delayChildren: 0.04 * i },
     }),
   };
 
@@ -50,16 +50,16 @@ export const TextReveal = ({ text, className = "" }: { text: string; className?:
       y: 0,
       transition: {
         type: "spring",
-        damping: 12,
+        damping: 15,
         stiffness: 100,
       } as const,
     },
     hidden: {
       opacity: 0,
-      y: 20,
+      y: 10,
       transition: {
         type: "spring",
-        damping: 12,
+        damping: 15,
         stiffness: 100,
       } as const,
     },
@@ -71,10 +71,10 @@ export const TextReveal = ({ text, className = "" }: { text: string; className?:
       variants={container}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-20px" }}
     >
       {words.map((word, wordIndex) => (
-        <span key={wordIndex} className="inline-flex whitespace-nowrap mr-[0.2em]">
+        <span key={wordIndex} className="inline-flex whitespace-nowrap mr-[0.2em] will-change-transform">
           {Array.from(word).map((letter, letterIndex) => (
             <motion.span key={letterIndex} variants={child} className="inline-block">
               {letter}
@@ -84,4 +84,6 @@ export const TextReveal = ({ text, className = "" }: { text: string; className?:
       ))}
     </motion.div>
   );
-};
+});
+
+TextReveal.displayName = "TextReveal";

@@ -1,4 +1,4 @@
-# Modern Developer Portfolio - Suraj K. R
+# Modern Developer Portfolio - Suraj K R
 
 A premium, production-ready developer portfolio built with Next.js, TypeScript, Tailwind CSS, and Framer Motion. Optimized for performance, accessibility, and high-end aesthetics.
 

@@ -1,19 +1,19 @@
 "use client";
 
 import React, { useEffect, useState, useMemo } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { motion, useSpring, useMotionValue, useMotionTemplate } from "framer-motion";
 
 const Particle = ({ delay }: { delay: number }) => {
   const randomX = useMemo(() => Math.random() * 100, []);
   const randomY = useMemo(() => Math.random() * 100, []);
-  const duration = useMemo(() => 10 + Math.random() * 20, []);
+  const duration = useMemo(() => 15 + Math.random() * 20, []);
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: `${randomX}%`, y: `${randomY}%` }}
+      initial={{ opacity: 0, left: `${randomX}%`, top: `${randomY}%` }}
       animate={{
-        y: [`${randomY}%`, `${randomY - 10}%`, `${randomY}%`],
-        opacity: [0.1, 0.3, 0.1],
+        y: [0, -30, 0],
+        opacity: [0, 0.2, 0],
       }}
       transition={{
         duration: duration,
@@ -21,100 +21,72 @@ const Particle = ({ delay }: { delay: number }) => {
         delay: delay,
         ease: "easeInOut",
       }}
-      className="absolute w-1 h-1 bg-blue-400 rounded-full blur-[1px]"
+      className="absolute w-1 h-1 bg-blue-400 rounded-full blur-[1px] will-change-transform"
     />
   );
 };
 
 export const SpotlightBackground = () => {
   const [mounted, setMounted] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 30, stiffness: 200 };
+  const springConfig = { damping: 50, stiffness: 300 };
   const springX = useSpring(mouseX, springConfig);
   const springY = useSpring(mouseY, springConfig);
 
-  const [styleX, setStyleX] = useState(0);
-  const [styleY, setStyleY] = useState(0);
+  const background = useMotionTemplate`radial-gradient(600px circle at ${springX}px ${springY}px, rgba(59, 130, 246, 0.1), transparent 80%)`;
 
   useEffect(() => {
     setMounted(true);
+    // Detect touch device to disable heavy mouse tracking
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
     const handleMouseMove = (e: MouseEvent) => {
+      if (isTouch) return;
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
 
-    const unsubscribeX = springX.on("change", (v) => setStyleX(v));
-    const unsubscribeY = springY.on("change", (v) => setStyleY(v));
-
     window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      unsubscribeX();
-      unsubscribeY();
-    };
-  }, [mouseX, mouseY, springX, springY]);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY, isTouch]);
 
   if (!mounted) return <div className="fixed inset-0 -z-10 bg-white dark:bg-[#020617]" />;
 
   return (
     <div className="fixed inset-0 -z-10 bg-white dark:bg-[#020617] overflow-hidden pointer-events-none">
-      {/* Premium Mesh Gradient Blobs */}
-      <div className="absolute inset-0 overflow-hidden opacity-50 dark:opacity-30">
+      {/* Mesh Gradient Blobs - Static on touch to save GPU */}
+      <div className={`absolute inset-0 overflow-hidden ${isTouch ? 'opacity-20' : 'opacity-30'}`}>
         <motion.div
-          animate={{
-            x: [0, 150, 0],
-            y: [0, 100, 0],
-            scale: [1, 1.4, 1],
+           animate={isTouch ? {} : {
+            x: [0, 80, 0],
+            y: [0, 40, 0],
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-[10%] -left-[10%] w-[70%] h-[70%] rounded-full bg-blue-500/30 dark:bg-blue-600/20 blur-[130px]"
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-[10%] -left-[10%] w-[70%] h-[70%] rounded-full bg-blue-500/20 blur-[100px] will-change-transform"
         />
         <motion.div
-          animate={{
-            x: [0, -180, 0],
-            y: [0, -120, 0],
-            scale: [1, 1.5, 1],
+          animate={isTouch ? {} : {
+            x: [0, -80, 0],
+            y: [0, -40, 0],
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-[20%] -right-[10%] w-[80%] h-[80%] rounded-full bg-purple-500/30 dark:bg-purple-600/20 blur-[150px]"
-        />
-        <motion.div
-          animate={{
-            x: [0, 200, 0],
-            y: [0, -150, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[20%] -left-[15%] w-[60%] h-[60%] rounded-full bg-cyan-400/20 dark:bg-cyan-500/10 blur-[110px]"
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-[20%] -right-[10%] w-[80%] h-[80%] rounded-full bg-purple-500/20 blur-[120px] will-change-transform"
         />
       </div>
 
-      {/* Floating Particles Layer */}
-      <div className="absolute inset-0 z-0">
-        {[...Array(20)].map((_, i) => (
-          <Particle key={i} delay={i * 0.5} />
-        ))}
-      </div>
-
-      {/* Interactive Mouse Spotlight with dynamic scale */}
-      <div
-        className="absolute inset-0 z-10 opacity-40 dark:opacity-30 mix-blend-soft-light"
-        style={{
-          background: `radial-gradient(800px circle at ${styleX}px ${styleY}px, rgba(59, 130, 246, 0.2), transparent 80%)`,
-        }}
-      />
+      {/* Interactive Mouse Spotlight - Disabled on touch */}
+      {!isTouch && (
+        <motion.div
+          className="absolute inset-0 z-10 opacity-30 mix-blend-soft-light will-change-[background]"
+          style={{ background }}
+        />
+      )}
       
-      {/* Grid Pattern with subtle pulse */}
-      <motion.div 
-        animate={{ opacity: [0.03, 0.05, 0.03] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-0 bg-grid-slate-900/[0.04] dark:bg-grid-white/[0.02] bg-[size:50px_50px]" 
-      />
-      
-      {/* Noise Texture */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-grid-slate-900/[0.03] dark:bg-grid-white/[0.01] bg-[size:50px_50px]" />
     </div>
   );
 };
@@ -122,10 +94,10 @@ export const SpotlightBackground = () => {
 export const RevealOnScroll = ({ children }: { children: React.ReactNode }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.98 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
       {children}
     </motion.div>

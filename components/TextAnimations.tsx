@@ -34,7 +34,7 @@ export const Typewriter = () => {
 };
 
 export const TextReveal = ({ text, className = "" }: { text: string; className?: string }) => {
-  const letters = Array.from(text);
+  const words = text.split(" ");
 
   const container = {
     hidden: { opacity: 0 },
@@ -67,16 +67,20 @@ export const TextReveal = ({ text, className = "" }: { text: string; className?:
 
   return (
     <motion.div
-      className={`flex overflow-hidden ${className}`}
+      className={`flex flex-wrap ${className}`}
       variants={container}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
     >
-      {letters.map((letter, index) => (
-        <motion.span key={index} variants={child}>
-          {letter === " " ? "\u00A0" : letter}
-        </motion.span>
+      {words.map((word, wordIndex) => (
+        <span key={wordIndex} className="inline-flex whitespace-nowrap mr-[0.2em]">
+          {Array.from(word).map((letter, letterIndex) => (
+            <motion.span key={letterIndex} variants={child} className="inline-block">
+              {letter}
+            </motion.span>
+          ))}
+        </span>
       ))}
     </motion.div>
   );

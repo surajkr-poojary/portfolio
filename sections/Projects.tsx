@@ -1,10 +1,7 @@
 "use client";
-
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
 import Image from "next/image";
-
 const projects = [
   {
     id: 1,
@@ -13,8 +10,6 @@ const projects = [
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     category: "Web",
     image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1200",
-    github: "https://github.com",
-    live: "https://example.com",
   },
   {
     id: 2,
@@ -23,8 +18,6 @@ const projects = [
     tech: ["Flutter", "Dart", "Firebase"],
     category: "Mobile",
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=1200",
-    github: "https://github.com",
-    live: "https://example.com",
   },
   {
     id: 3,
@@ -33,8 +26,6 @@ const projects = [
     tech: ["Electron", "React", "Node.js", "Plotly.js"],
     category: "Desktop",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
-    github: "https://github.com",
-    live: "https://example.com",
   },
   {
     id: 4,
@@ -43,8 +34,6 @@ const projects = [
     tech: ["SwiftUI", "Combine", "Swift"],
     category: "Mobile",
     image: "https://images.unsplash.com/photo-1537498425277-c283d32ef9db?auto=format&fit=crop&q=80&w=1200",
-    github: "https://github.com",
-    live: "https://example.com",
   },
 ];
 

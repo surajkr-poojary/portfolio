@@ -8,15 +8,17 @@ import Projects from "@/sections/Projects";
 import Contact from "@/sections/Contact";
 import { motion, useScroll, useSpring } from "framer-motion";
 
+import { RevealOnScroll } from "@/components/Backgrounds";
+
 export default function Home() {
   return (
     <div className="flex flex-col">
       <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Contact />
+      <RevealOnScroll><About /></RevealOnScroll>
+      <RevealOnScroll><Skills /></RevealOnScroll>
+      <RevealOnScroll><Experience /></RevealOnScroll>
+      <RevealOnScroll><Projects /></RevealOnScroll>
+      <RevealOnScroll><Contact /></RevealOnScroll>
     </div>
   );
 }

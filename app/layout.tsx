@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
-import { CustomCursor } from "@/components/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +22,8 @@ export const metadata: Metadata = {
   keywords: ["Software Developer", "React", "Next.js", "Flutter", "iOS Development", "Portfolio", "Suraj K. R"],
 };
 
+import { SpotlightBackground } from "@/components/Backgrounds";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,7 +33,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-blue-200 dark:selection:bg-blue-900`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="portfolio-theme">
-          <CustomCursor />
+          <SpotlightBackground />
           <ScrollProgress />
           <Navbar />
           <main className="min-h-screen">

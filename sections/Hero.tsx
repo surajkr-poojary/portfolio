@@ -12,15 +12,7 @@ const Hero = () => {
       id="home"
       className="relative min-h-[100vh] flex items-center justify-center overflow-hidden pt-20"
     >
-      {/* Mesh Gradient Background */}
-      <div className="absolute inset-0 -z-10 bg-white dark:bg-[#020617]">
-        <div className="absolute top-0 left-0 w-full h-full opacity-30 dark:opacity-20 translate-z-0">
-          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-400 blur-[130px] animate-pulse" />
-          <div className="absolute bottom-[-10%] right-[-20%] w-[60%] h-[60%] rounded-full bg-purple-500 blur-[150px] animate-pulse delay-700" />
-          <div className="absolute top-[20%] right-[-10%] w-[40%] h-[40%] rounded-full bg-pink-400 blur-[120px] animate-pulse delay-1000" />
-        </div>
-        <div className="absolute inset-0 bg-grid-slate-100/[0.03] dark:bg-grid-white/[0.02] bg-[center_top_-1px]" />
-      </div>
+
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8 relative">
         <div className="text-center">
@@ -36,10 +28,9 @@ const Hero = () => {
           </motion.div>
 
           <div className="flex justify-center mb-6">
-            <TextReveal 
-              text="Hi, I'm Suraj K. R" 
-              className="text-4xl sm:text-6xl md:text-8xl font-black text-gray-900 dark:text-white leading-[1.1] tracking-tight"
-            />
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black leading-[1.1] tracking-tight bg-gradient-to-r from-gray-900 via-blue-600 to-gray-900 dark:from-white dark:via-blue-400 dark:to-white bg-clip-text text-transparent">
+              Hi, I&apos;m Suraj K. R
+            </h1>
           </div>
 
           <motion.div
